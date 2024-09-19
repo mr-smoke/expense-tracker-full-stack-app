@@ -1,4 +1,4 @@
-const userTypeDef = ` #graphql
+const userTypeDef = `#graphql
     type User {
         _id: ID!
         username: String!
