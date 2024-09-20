@@ -1,19 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { GridBackgroundDemo } from "./components/ui/Background";
 import Home from "./pages/Home";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <GridBackgroundDemo>
-          <p>some</p>
-          <main>
-            <Routes>
-              <Route path="/" component={<Home />} exact />
-            </Routes>
-          </main>
-        </GridBackgroundDemo>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} exact />
+        </Routes>
       </BrowserRouter>
     </>
   );
