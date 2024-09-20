@@ -30,7 +30,7 @@ const transactionTypeDef = `#graphql
         location: String
     }
 
-    type UpdateTransactionInput {
+    input UpdateTransactionInput {
         transactionId: ID!
         amount: Float
         type: String
