@@ -1,7 +1,7 @@
 const TransactionForm = () => {
   return (
-    <form className="flex flex-col gap-4 mt-4">
-      <div className="flex flex-col gap-2">
+    <form className="flex flex-col gap-2 md:gap-4 mt-4 p-3 md:p-0">
+      <div className="flex flex-col gap-1 md:gap-2">
         <label htmlFor="title">Transaction</label>
         <input
           className="border rounded-lg p-2 text-black"
@@ -10,8 +10,8 @@ const TransactionForm = () => {
           name="title"
         />
       </div>
-      <div className="flex items-center gap-4">
-        <div className="flex flex-col gap-2 w-full">
+      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+        <div className="flex flex-col gap-1 md:gap-2 w-full">
           <label className="text-nowrap" htmlFor="type">
             Payment Type
           </label>
@@ -24,7 +24,7 @@ const TransactionForm = () => {
             <option value="cash">Cash</option>
           </select>
         </div>
-        <div className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col gap-1 md:gap-2 w-full">
           <label htmlFor="category">Category</label>
           <select
             className="border rounded-lg p-2 text-black"
@@ -36,7 +36,7 @@ const TransactionForm = () => {
             <option value="savings">Savings</option>
           </select>
         </div>
-        <div className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col gap-1 md:gap-2 w-full">
           <label htmlFor="amoun">Amount</label>
           <input
             className="border rounded-lg p-2 text-black"
@@ -46,8 +46,8 @@ const TransactionForm = () => {
           />
         </div>
       </div>
-      <div className="flex items-center gap-4">
-        <div className="flex flex-col gap-2 w-full">
+      <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
+        <div className="flex flex-col gap-1 md:gap-2 w-full">
           <label htmlFor="location">Location</label>
           <input
             className="border rounded-lg p-2 text-black"
@@ -56,7 +56,7 @@ const TransactionForm = () => {
             name="location"
           />
         </div>
-        <div className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col gap-1 md:gap-2 w-full">
           <label htmlFor="date">Date</label>
           <input
             className="border rounded-lg p-2 text-black"

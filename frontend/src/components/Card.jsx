@@ -9,7 +9,7 @@ import {
 
 const Card = () => {
   return (
-    <div className="border rounded-lg flex flex-col p-4 gap-2 w-96 ">
+    <div className="border rounded-lg flex flex-col p-4 gap-2 w-72 md:w-96 mx-4 md:mx-0">
       <div className="flex items-center justify-between gap-4">
         <h3 className="text-2xl">Salary</h3>
         <div className="flex items-center gap-4">
