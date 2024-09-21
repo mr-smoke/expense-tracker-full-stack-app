@@ -1,8 +1,15 @@
+import Card from "../components/Card";
 import Chart from "../components/Chart";
 import TransactionForm from "../components/TransactionForm";
 import { FaSignOutAlt } from "react-icons/fa";
 
 const Home = () => {
+  const data = [
+    { id: 1, title: "Salary", amount: 5000 },
+    { id: 2, title: "Rent", amount: -1000 },
+    { id: 3, title: "Grocery", amount: -200 },
+    { id: 4, title: "Internet", amount: -50 },
+  ];
   return (
     <div className="flex flex-col items-center max-w-7xl mx-auto relative">
       <h2 className="text-4xl">Track your expenses</h2>
@@ -18,7 +25,11 @@ const Home = () => {
         <Chart />
         <TransactionForm />
       </section>
-      <section className="flex"></section>
+      <section className="flex flex-wrap gap-4 pt-10">
+        {data.map((transaction, key) => (
+          <Card key={key} />
+        ))}
+      </section>
     </div>
   );
 };
