@@ -68,7 +68,7 @@ const Transaction = () => {
           </div>
         </div>
         <button className="bg-blue-500 text-white p-2 rounded-md mt-4">
-          Add transaction
+          Update transaction
         </button>
       </form>
     </div>
