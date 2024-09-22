@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Transaction from "./pages/Transaction";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} exact />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/transaction/:id" element={<Transaction />} />
         </Routes>
       </BrowserRouter>
     </>
