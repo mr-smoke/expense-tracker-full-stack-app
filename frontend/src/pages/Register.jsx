@@ -1,4 +1,22 @@
+import { useState } from "react";
+
 const Register = () => {
+  const [registerData, setRegisterData] = useState({
+    fullname: "",
+    username: "",
+    password: "",
+    gender: "",
+  });
+
+  const handleChange = (e) => {
+    setRegisterData({ ...registerData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(registerData);
+  };
+
   return (
     <div className="absolute bottom-0 h-screen w-full flex justify-center items-center pt-20 md:pt-0">
       <div className="border rounded-lg bg-gray-100 text-gray-900 flex flex-col p-4 w-72 md:w-96">
@@ -14,6 +32,7 @@ const Register = () => {
               type="text"
               id="fullname"
               name="fullname"
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -23,6 +42,7 @@ const Register = () => {
               type="text"
               id="username"
               name="username"
+              onChange={handleChange}
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -32,9 +52,35 @@ const Register = () => {
               type="password"
               id="password"
               name="password"
+              onChange={handleChange}
             />
           </div>
-          <button className="bg-blue-500 text-white rounded-lg p-2 mt-4 hover:opacity-80">
+          <div className="flex justify-center gap-4">
+            <div className="flex items-center gap-2">
+              <label htmlFor="male">Male</label>
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                onClick={handleChange}
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <label htmlFor="female">Female</label>
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="female"
+                onClick={handleChange}
+              />
+            </div>
+          </div>
+          <button
+            className="bg-blue-500 text-white rounded-lg p-2 mt-4 hover:opacity-80"
+            onClick={handleSubmit}
+          >
             Register
           </button>
         </form>

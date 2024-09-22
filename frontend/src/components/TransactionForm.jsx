@@ -66,7 +66,7 @@ const TransactionForm = () => {
           />
         </div>
       </div>
-      <button className="bg-blue-500 text-white p-2 rounded-md mt-4">
+      <button className="bg-blue-500 text-white p-2 rounded-md mt-4 hover:bg-blue-400">
         Add transaction
       </button>
     </form>
