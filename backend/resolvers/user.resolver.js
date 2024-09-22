@@ -10,9 +10,6 @@ const useResolver = {
     authUser: async (_, __, context) => {
       try {
         const user = await context.getUser();
-        if (!user) {
-          throw new Error("Unauthorized");
-        }
         return user;
       } catch (error) {
         console.log(error);
@@ -57,7 +54,7 @@ const useResolver = {
 
         await user.save();
         await context.login(user);
-        return newUser;
+        return user;
       } catch (error) {
         console.log(error);
         throw new Error(error.message || "An error occurred");

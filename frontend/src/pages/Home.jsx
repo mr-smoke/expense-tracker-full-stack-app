@@ -1,10 +1,14 @@
+import { useQuery } from "@apollo/client";
 import Card from "../components/Card";
 import Chart from "../components/Chart";
 import TransactionForm from "../components/TransactionForm";
 import { FaSignOutAlt } from "react-icons/fa";
+import { GET_AUTH_USER } from "../graphql/queries/user.query";
 
 const Home = () => {
-  const data = [
+  const { data, loading, error } = useQuery(GET_AUTH_USER);
+  console.log(data);
+  const datas = [
     { id: 1, title: "Salary", amount: 5000 },
     { id: 2, title: "Rent", amount: -1000 },
     { id: 3, title: "Grocery", amount: -200 },
@@ -28,7 +32,7 @@ const Home = () => {
         <TransactionForm />
       </section>
       <section className="flex flex-wrap justify-center xl:justify-between gap-4 pt-20 ">
-        {data.map((transaction, key) => (
+        {datas.map((transaction, key) => (
           <Card key={key} />
         ))}
       </section>

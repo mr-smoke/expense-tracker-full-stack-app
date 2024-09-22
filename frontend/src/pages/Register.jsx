@@ -1,20 +1,31 @@
+import { useMutation } from "@apollo/client";
 import { useState } from "react";
+import { REGISTER } from "../graphql/mutations/user.mutation";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
-    fullname: "",
+    name: "",
     username: "",
     password: "",
     gender: "",
   });
 
+  const [register, { loading, error }] = useMutation(REGISTER);
+
   const handleChange = (e) => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(registerData);
+    try {
+      await register({ variables: { input: registerData } });
+      if (error) {
+        console.log(error.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -26,12 +37,12 @@ const Register = () => {
         </p>
         <form className="flex flex-col gap-2 pt-4">
           <div className="flex flex-col gap-1">
-            <label htmlFor="fullname">Full Name</label>
+            <label htmlFor="name">Full Name</label>
             <input
               className="border rounded-lg p-2 text-black"
               type="text"
-              id="fullname"
-              name="fullname"
+              id="name"
+              name="name"
               onChange={handleChange}
             />
           </div>
