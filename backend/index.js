@@ -21,8 +21,8 @@ const app = express();
 
 const httpServer = http.createServer(app);
 
-const mongoDBStore = connectMongo(session);
-const store = new mongoDBStore({
+const MongoDBStore = connectMongo(session);
+const store = new MongoDBStore({
   uri: process.env.MONGO_URI,
   collection: "sessions",
 });
@@ -36,11 +36,11 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: store,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 3,
       httpOnly: true,
     },
+    store: store,
   })
 );
 

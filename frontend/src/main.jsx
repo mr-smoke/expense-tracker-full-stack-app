@@ -12,21 +12,21 @@ import {
   concat,
 } from "@apollo/client";
 
-const httpLink = new HttpLink({ uri: "http://localhost:4000/graphql" });
+// const httpLink = new HttpLink({ uri: "http://localhost:4000/graphql" });
 
-const authMiddleware = new ApolloLink((operation, forward) => {
-  operation.setContext({
-    headers: {
-      authorization: localStorage.getItem("token") || null,
-    },
-  });
-
-  return forward(operation);
-});
+// const authLink = new ApolloLink((operation, forward) => {
+//   const token = localStorage.getItem("token");
+//   operation.setContext({
+//     headers: { authorization: token ? `Bearer ${token}` : null },
+//   });
+//   return forward(operation);
+// });
 
 const client = new ApolloClient({
-  link: concat(authMiddleware, httpLink),
+  // link: concat(authLink, httpLink),
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
+  credentials: "include",
 });
 
 createRoot(document.getElementById("root")).render(
