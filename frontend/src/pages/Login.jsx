@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { LOGIN } from "../graphql/mutations/user.mutation";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
@@ -21,8 +22,10 @@ const Login = () => {
       if (error) {
         console.log(error.message);
       }
+      toast.success("User logged in successfully");
     } catch (error) {
       console.log(error.message);
+      toast.error(error.message);
     }
   };
 

@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Transaction from "./pages/Transaction";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/transaction/:id" element={<Transaction />} />
         </Routes>
+        <Toaster />
       </BrowserRouter>
     </>
   );

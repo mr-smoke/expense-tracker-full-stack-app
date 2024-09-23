@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { REGISTER } from "../graphql/mutations/user.mutation";
+import { toast } from "react-hot-toast";
 
 const Register = () => {
   const [registerData, setRegisterData] = useState({
@@ -23,8 +24,10 @@ const Register = () => {
       if (error) {
         console.log(error.message);
       }
+      toast.success("User registered successfully");
     } catch (error) {
       console.log(error.message);
+      toast.error(error.message);
     }
   };
 

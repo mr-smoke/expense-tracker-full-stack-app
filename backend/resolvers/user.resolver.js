@@ -68,16 +68,6 @@ const useResolver = {
           throw new Error("All fields are required");
         }
 
-        // const user = await User.findOne({ username });
-        // if (!user) {
-        //   throw new Error("Invalid credentials");
-        // }
-
-        // const isPasswordValid = await bcrypt.compare(password, user.password);
-        // if (!isPasswordValid) {
-        //   throw new Error("Invalid credentials");
-        // }
-
         const { user } = await context.authenticate("graphql-local", {
           username,
           password,
