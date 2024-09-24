@@ -20,19 +20,21 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={data.authUser ? <Home /> : <Navigate to="/login" />}
+            element={data?.authUser ? <Home /> : <Navigate to="/login" />}
           />
           <Route
             path="/login"
-            element={data.authUser ? <Navigate to="/" /> : <Login />}
+            element={data?.authUser ? <Navigate to="/" /> : <Login />}
           />
           <Route
             path="/register"
-            element={data.authUser ? <Navigate to="/" /> : <Register />}
+            element={data?.authUser ? <Navigate to="/" /> : <Register />}
           />
           <Route
             path="/transaction/:id"
-            element={data.authUser ? <Transaction /> : <Navigate to="/login" />}
+            element={
+              data?.authUser ? <Transaction /> : <Navigate to="/login" />
+            }
           />
         </Routes>
         <Toaster />

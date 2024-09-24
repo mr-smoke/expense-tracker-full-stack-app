@@ -38,6 +38,12 @@ const transactionResolver = {
         if (!context.getUser()) {
           throw new Error("Unauthorized");
         }
+        if (input.amount < 0) {
+          throw new Error("Invalid amount");
+        }
+        if (!input.description || !input.date || !input.amount) {
+          throw new Error("Please provide all required fields");
+        }
         const userId = await context.getUser().id;
         const newTransaction = new Transaction({ ...input, userId });
         await newTransaction.save();
