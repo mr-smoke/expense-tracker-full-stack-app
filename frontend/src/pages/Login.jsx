@@ -10,7 +10,7 @@ const Login = () => {
   });
 
   const [login, { loading, error }] = useMutation(LOGIN, {
-    refetchQueries: ["GetAuthUser"],
+    refetchQueries: ["GetAuthUser", "GetTransactions"],
   });
 
   const handleChange = (e) => {
