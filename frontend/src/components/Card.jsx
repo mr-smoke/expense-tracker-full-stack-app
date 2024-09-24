@@ -6,15 +6,19 @@ import {
   FaLocationArrow,
   FaTrash,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const Card = () => {
+const Card = ({ card }) => {
+  console.log(card);
   return (
     <div className="border rounded-lg flex flex-col p-4 gap-2 w-72 md:w-96 mx-4 md:mx-0">
       <div className="flex items-center justify-between gap-4">
         <h3 className="text-2xl">Salary</h3>
         <div className="flex items-center gap-4">
           <FaTrash />
-          <FaEdit />
+          <Link to={`/transaction/${card._id}`}>
+            <FaEdit />
+          </Link>
         </div>
       </div>
       <div className="flex items-center gap-2">

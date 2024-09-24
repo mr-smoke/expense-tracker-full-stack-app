@@ -13,3 +13,17 @@ export const ADD_TRANSACTION = gql`
     }
   }
 `;
+
+export const UPDATE_TRANSACTION = gql`
+  mutation UpdateTransaction($input: UpdateTransactionInput!) {
+    updateTransaction(input: $input) {
+      _id
+      amount
+      type
+      category
+      description
+      location
+      date
+    }
+  }
+`;

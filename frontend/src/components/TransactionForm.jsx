@@ -71,7 +71,7 @@ const TransactionForm = () => {
           >
             <option value="expense">Expense</option>
             <option value="income">Income</option>
-            <option value="savings">Savings</option>
+            <option value="saving">Savings</option>
           </select>
         </div>
         <div className="flex flex-col gap-1 md:gap-2 w-full">

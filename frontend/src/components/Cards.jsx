@@ -9,7 +9,7 @@ const Cards = () => {
   return (
     <>
       {data?.getTransactions.map((card, key) => (
-        <Card key={key} />
+        <Card key={key} card={card} />
       ))}
     </>
   );
