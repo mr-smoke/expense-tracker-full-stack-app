@@ -11,7 +11,9 @@ const Register = () => {
     gender: "",
   });
 
-  const [register, { loading, error }] = useMutation(REGISTER);
+  const [register, { loading, error }] = useMutation(REGISTER, {
+    refetchQueries: ["GetAuthUser"],
+  });
 
   const handleChange = (e) => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });

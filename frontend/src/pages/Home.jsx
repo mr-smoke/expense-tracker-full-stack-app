@@ -1,13 +1,29 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import Card from "../components/Card";
 import Chart from "../components/Chart";
 import TransactionForm from "../components/TransactionForm";
 import { FaSignOutAlt } from "react-icons/fa";
 import { GET_AUTH_USER } from "../graphql/queries/user.query";
+import { LOGOUT } from "../graphql/mutations/user.mutation";
+import toast from "react-hot-toast";
 
 const Home = () => {
-  const { data, loading, error } = useQuery(GET_AUTH_USER);
-  console.log(data);
+  const { data } = useQuery(GET_AUTH_USER);
+  const [logout, { loading, client }] = useMutation(LOGOUT, {
+    refetchQueries: ["GetAuthUser"],
+  });
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      client.clearStore();
+      toast.success("Logged out successfully");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
   const datas = [
     { id: 1, title: "Salary", amount: 5000 },
     { id: 2, title: "Rent", amount: -1000 },
@@ -22,10 +38,10 @@ const Home = () => {
       <section className="flex items-center gap-6 pt-6">
         <img
           className="w-16 h-16 rounded-full"
-          src="/noavatar.png"
+          src={data?.authUser?.profilePic}
           alt="Avatar pic"
         />
-        <FaSignOutAlt size={30} />
+        <FaSignOutAlt className="cursor-pointer" size={30} onClick={logout} />
       </section>
       <section className="flex flex-col md:flex-row pt-10 gap-10">
         <Chart />

@@ -9,7 +9,9 @@ const Login = () => {
     password: "",
   });
 
-  const [login, { loading, error }] = useMutation(LOGIN);
+  const [login, { loading, error }] = useMutation(LOGIN, {
+    refetchQueries: ["GetAuthUser"],
+  });
 
   const handleChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
