@@ -25,6 +25,9 @@ const transactionResolver = {
           _id: transactionId,
           userId,
         });
+        if (!transaction) {
+          throw new Error("Transaction not found");
+        }
         return transaction;
       } catch (error) {
         console.log(error);

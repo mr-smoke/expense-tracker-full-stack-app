@@ -12,6 +12,7 @@ const Transaction = () => {
     variables: { id: id },
   });
   const [updateTransaction] = useMutation(UPDATE_TRANSACTION);
+  console.log(data);
 
   const [form, setForm] = useState({
     description: "",
@@ -57,6 +58,14 @@ const Transaction = () => {
       toast.error(error.message);
     }
   };
+
+  if (data === undefined) {
+    return (
+      <div className="absolute bottom-0 h-screen w-full flex justify-center items-center pt-20 md:pt-0">
+        <h1 className="text-4xl">No acces to this transaction</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="absolute bottom-0 h-screen w-full flex justify-center items-center pt-20 md:pt-0">
@@ -147,8 +156,9 @@ const Transaction = () => {
           </div>
         </div>
         <button
-          className="bg-blue-500 text-white p-2 rounded-md mt-4 hover:bg-blue-400"
+          className="bg-blue-500 text-white p-2 rounded-md mt-4 hover:bg-blue-400 disabled:bg-gray-300 disabled:cursor-not-allowed"
           onClick={handleSubmit}
+          disabled={loading || data === undefined}
         >
           Update transaction
         </button>
