@@ -41,7 +41,7 @@ const Home = () => {
         <Chart />
         <TransactionForm />
       </section>
-      <section className="flex flex-wrap justify-center xl:justify-between gap-4 pt-20 ">
+      <section className="flex flex-wrap justify-center xl:justify-between gap-4 pt-20 pb-10">
         <Cards />
       </section>
     </div>
