@@ -1,3 +1,4 @@
+import { get } from "mongoose";
 import Transaction from "../models/transaction.model.js";
 
 const transactionResolver = {
@@ -29,6 +30,31 @@ const transactionResolver = {
           throw new Error("Transaction not found");
         }
         return transaction;
+      } catch (error) {
+        console.log(error);
+        throw new Error(error.message || "An error occurred");
+      }
+    },
+    getStatistics: async (_, __, context) => {
+      try {
+        if (!context.getUser()) {
+          throw new Error("Unauthorized");
+        }
+        const userId = await context.getUser().id;
+        const transactions = await Transaction.find({ userId });
+        const statistics = transactions.reduce((acc, transaction) => {
+          if (acc[transaction.category]) {
+            acc[transaction.category] += transaction.amount;
+          } else {
+            acc[transaction.category] = transaction.amount;
+          }
+          return acc;
+        }, {});
+        console.log(statistics);
+        return Object.keys(statistics).map((key) => ({
+          category: key,
+          total: statistics[key],
+        }));
       } catch (error) {
         console.log(error);
         throw new Error(error.message || "An error occurred");

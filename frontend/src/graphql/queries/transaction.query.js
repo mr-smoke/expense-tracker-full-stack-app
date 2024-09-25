@@ -27,3 +27,12 @@ export const GET_TRANSACTION = gql`
     }
   }
 `;
+
+export const GET_STATISTICS = gql`
+  query GetStatistics {
+    getStatistics {
+      category
+      total
+    }
+  }
+`;
