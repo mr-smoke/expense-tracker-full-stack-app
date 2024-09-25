@@ -52,6 +52,7 @@ const Transaction = () => {
         },
       });
       toast.success("Transaction updated successfully");
+      window.location.href = "/";
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -113,8 +114,8 @@ const Transaction = () => {
               <option value="income" selected={form.category === "income"}>
                 Income
               </option>
-              <option value="savings" selected={form.category === "saving"}>
-                Saving
+              <option value="saving" selected={form.category === "saving"}>
+                Savings
               </option>
             </select>
           </div>

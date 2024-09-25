@@ -16,7 +16,7 @@ const Home = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      client.clearStore();
+      client.resetStore();
       toast.success("Logged out successfully");
     } catch (error) {
       console.log(error);

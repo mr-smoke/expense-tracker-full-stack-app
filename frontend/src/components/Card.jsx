@@ -22,6 +22,7 @@ const Card = ({ transaction }) => {
       toast.success("Transaction deleted successfully");
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -38,7 +39,7 @@ const Card = ({ transaction }) => {
       }`}
     >
       <div className="flex items-center justify-between gap-4">
-        <h3 className="text-2xl">Salary</h3>
+        <h3 className="text-2xl capitalize">{transaction.category}</h3>
         <div className="flex items-center gap-4">
           <button onClick={handleDelete}>
             <FaTrash />
@@ -50,19 +51,22 @@ const Card = ({ transaction }) => {
       </div>
       <div className="flex items-center gap-2">
         <FaIdCard />
-        <p>Description: {transaction.description}</p>
+        <p className="truncate">Description: {transaction.description}</p>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 capitalize">
         <FaCartPlus />
         <p>Payment Type: {transaction.type}</p>
       </div>
       <div className="flex items-center gap-2">
         <FaCashRegister />
-        <p>Amount: ${transaction.amount}</p>
+        <p className="truncate">Amount: ${transaction.amount}</p>
       </div>
       <div className="flex items-center gap-2">
         <FaLocationArrow />
-        <p>Location: {transaction.location}</p>
+        <p className="truncate">
+          Location:{" "}
+          {transaction.location ? transaction.location : "No location info"}
+        </p>
       </div>
     </div>
   );

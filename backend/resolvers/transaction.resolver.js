@@ -61,6 +61,9 @@ const transactionResolver = {
         if (!context.getUser()) {
           throw new Error("Unauthorized");
         }
+        if (input.amount < 0) {
+          throw new Error("Invalid amount");
+        }
         const userId = await context.getUser().id;
         const { transactionId, ...updates } = input;
         const updatedTransaction = await Transaction.findOneAndUpdate(

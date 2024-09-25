@@ -4,14 +4,16 @@ import { ADD_TRANSACTION } from "../graphql/mutations/transaction.mutation";
 import { toast } from "react-hot-toast";
 
 const TransactionForm = () => {
-  const [form, setForm] = useState({
+  const initialFormState = {
     description: "",
     type: "card",
     category: "expense",
     amount: 0,
     location: "",
     date: "",
-  });
+  };
+
+  const [form, setForm] = useState(initialFormState);
 
   const [addTransaction] = useMutation(ADD_TRANSACTION, {
     refetchQueries: ["GetTransactions"],
@@ -27,7 +29,8 @@ const TransactionForm = () => {
       await addTransaction({
         variables: { input: { ...form, amount: parseFloat(form.amount) } },
       });
-      toast.success("Transaction added succesfully.");
+      toast.success("Transaction added successfully.");
+      setForm(initialFormState);
     } catch (error) {
       console.error(error);
       toast.error(error.message);
@@ -43,6 +46,7 @@ const TransactionForm = () => {
           type="text"
           id="description"
           name="description"
+          value={form.description}
           onChange={handleChange}
         />
       </div>
@@ -55,6 +59,7 @@ const TransactionForm = () => {
             className="border rounded-lg p-2 text-black"
             name="type"
             id="type"
+            value={form.type}
             onChange={handleChange}
           >
             <option value="card">Card</option>
@@ -67,6 +72,7 @@ const TransactionForm = () => {
             className="border rounded-lg p-2 text-black"
             name="category"
             id="category"
+            value={form.category}
             onChange={handleChange}
           >
             <option value="expense">Expense</option>
@@ -75,12 +81,13 @@ const TransactionForm = () => {
           </select>
         </div>
         <div className="flex flex-col gap-1 md:gap-2 w-full">
-          <label htmlFor="amoun">Amount</label>
+          <label htmlFor="amount">Amount</label>
           <input
             className="border rounded-lg p-2 text-black"
             type="number"
             id="amount"
             name="amount"
+            value={form.amount}
             onChange={handleChange}
           />
         </div>
@@ -93,6 +100,7 @@ const TransactionForm = () => {
             type="text"
             id="location"
             name="location"
+            value={form.location}
             onChange={handleChange}
           />
         </div>
@@ -103,6 +111,7 @@ const TransactionForm = () => {
             type="date"
             id="date"
             name="date"
+            value={form.date}
             onChange={handleChange}
           />
         </div>
