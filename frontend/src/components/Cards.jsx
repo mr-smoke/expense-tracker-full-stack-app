@@ -8,8 +8,8 @@ const Cards = () => {
   if (loading) return <p>Loading...</p>;
   return (
     <>
-      {data?.getTransactions.map((card, key) => (
-        <Card key={key} card={card} />
+      {data?.getTransactions.map((transaction, key) => (
+        <Card key={key} transaction={transaction} />
       ))}
     </>
   );

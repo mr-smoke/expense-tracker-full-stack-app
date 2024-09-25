@@ -12,7 +12,6 @@ const Transaction = () => {
     variables: { id: id },
   });
   const [updateTransaction] = useMutation(UPDATE_TRANSACTION);
-  console.log(data);
 
   const [form, setForm] = useState({
     description: "",

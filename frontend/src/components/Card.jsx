@@ -11,48 +11,58 @@ import { DELETE_TRANSACTION } from "../graphql/mutations/transaction.mutation";
 import { useMutation } from "@apollo/client";
 import toast from "react-hot-toast";
 
-const Card = ({ card }) => {
+const Card = ({ transaction }) => {
   const [deleteTransaction] = useMutation(DELETE_TRANSACTION, {
     refetchQueries: ["GetTransactions"],
   });
 
   const handleDelete = async () => {
     try {
-      await deleteTransaction({ variables: { id: card._id } });
+      await deleteTransaction({ variables: { id: transaction._id } });
       toast.success("Transaction deleted successfully");
     } catch (error) {
       console.log(error);
     }
   };
 
+  const background = {
+    income: "from-green-700 to-green-400",
+    expense: "from-red-700 to-red-400",
+    saving: "from-blue-700 to-blue-400",
+  };
+
   return (
-    <div className="border rounded-lg flex flex-col p-4 gap-2 w-72 md:w-96 mx-4 md:mx-0">
+    <div
+      className={`rounded-lg flex flex-col p-4 gap-2 w-72 md:w-96 mx-4 md:mx-0 text-white text-lg bg-gradient-to-br ${
+        background[transaction.category]
+      }`}
+    >
       <div className="flex items-center justify-between gap-4">
         <h3 className="text-2xl">Salary</h3>
         <div className="flex items-center gap-4">
           <button onClick={handleDelete}>
             <FaTrash />
           </button>
-          <Link to={`/transaction/${card._id}`}>
+          <Link to={`/transaction/${transaction._id}`}>
             <FaEdit />
           </Link>
         </div>
       </div>
       <div className="flex items-center gap-2">
         <FaIdCard />
-        <p className="text-lg text-red-500">Description: Bit</p>
+        <p>Description: {transaction.description}</p>
       </div>
       <div className="flex items-center gap-2">
         <FaCartPlus />
-        <p className="text-lg text-red-500">Payment Type: Card</p>
+        <p>Payment Type: {transaction.type}</p>
       </div>
       <div className="flex items-center gap-2">
         <FaCashRegister />
-        <p className="text-lg text-red-500">Amount: $5000</p>
+        <p>Amount: ${transaction.amount}</p>
       </div>
       <div className="flex items-center gap-2">
         <FaLocationArrow />
-        <p className="text-lg text-red-500">Location: Lagos</p>
+        <p>Location: {transaction.location}</p>
       </div>
     </div>
   );
