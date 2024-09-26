@@ -7,9 +7,7 @@ import { useEffect, useState } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Chart = () => {
-  const { data } = useQuery(GET_STATISTICS, {
-    fetchPolicy: "network-only",
-  });
+  const { data } = useQuery(GET_STATISTICS);
 
   const chartColors = {
     expense: "rgb(201, 50, 50, 1)",

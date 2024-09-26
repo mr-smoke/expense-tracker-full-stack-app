@@ -6,10 +6,10 @@ const userTypeDef = `#graphql
         password: String!
         profilePic: String
         gender: String!
+        transactions: [Transaction!]
     }
 
     type Query {
-        getUsers: [User!]
         getUser(userId: ID!): User
         authUser: User
     }

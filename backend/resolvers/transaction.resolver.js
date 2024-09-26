@@ -1,5 +1,6 @@
 import { get } from "mongoose";
 import Transaction from "../models/transaction.model.js";
+import User from "../models/user.model.js";
 
 const transactionResolver = {
   Query: {
@@ -50,7 +51,6 @@ const transactionResolver = {
           }
           return acc;
         }, {});
-        console.log("name", statistics);
         return Object.keys(statistics).map((key) => ({
           category: key,
           total: statistics[key],
@@ -114,6 +114,18 @@ const transactionResolver = {
           userId,
         });
         return deletedTransaction;
+      } catch (error) {
+        console.log(error);
+        throw new Error(error.message || "An error occurred");
+      }
+    },
+  },
+  Transaction: {
+    user: async (parent) => {
+      try {
+        const userId = parent.userId;
+        const user = await User.findById(userId);
+        return user;
       } catch (error) {
         console.log(error);
         throw new Error(error.message || "An error occurred");

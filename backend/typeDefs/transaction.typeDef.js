@@ -8,6 +8,7 @@ const transactionTypeDef = `#graphql
         date: String!
         description: String!
         location: String
+        user: User!
     }
 
     type Query {

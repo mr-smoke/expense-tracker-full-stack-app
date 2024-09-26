@@ -1,12 +1,9 @@
 import User from "../models/user.model.js";
-import { users } from "../data/data.js";
 import bcrypt from "bcryptjs";
+import Transaction from "../models/transaction.model.js";
 
-const useResolver = {
+const userResolver = {
   Query: {
-    getUsers: async () => {
-      return users;
-    },
     authUser: async (_, __, context) => {
       try {
         const user = await context.getUser();
@@ -97,6 +94,17 @@ const useResolver = {
       }
     },
   },
+  User: {
+    transactions: async (parent) => {
+      try {
+        const transactions = await Transaction.find({ userId: parent._id });
+        return transactions;
+      } catch (error) {
+        console.log(error);
+        throw new Error(error.message || "An error occurred");
+      }
+    },
+  },
 };
 
-export default useResolver;
+export default userResolver;

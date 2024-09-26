@@ -16,7 +16,7 @@ const TransactionForm = () => {
   const [form, setForm] = useState(initialFormState);
 
   const [addTransaction] = useMutation(ADD_TRANSACTION, {
-    refetchQueries: ["GetTransactions"],
+    refetchQueries: ["GetTransactions", "GetStatistics"],
   });
 
   const handleChange = (e) => {

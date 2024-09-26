@@ -1,7 +1,7 @@
 import { mergeResolvers } from "@graphql-tools/merge";
-import useResolver from "./user.resolver.js";
+import userResolver from "./user.resolver.js";
 import transactionResolver from "./transaction.resolver.js";
 
-const mergedResolvers = mergeResolvers([useResolver, transactionResolver]);
+const mergedResolvers = mergeResolvers([userResolver, transactionResolver]);
 
 export default mergedResolvers;

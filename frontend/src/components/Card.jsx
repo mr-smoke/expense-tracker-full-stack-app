@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 
 const Card = ({ transaction }) => {
   const [deleteTransaction] = useMutation(DELETE_TRANSACTION, {
-    refetchQueries: ["GetTransactions"],
+    refetchQueries: ["GetTransactions", "GetStatistics"],
   });
 
   const handleDelete = async () => {
