@@ -2,67 +2,62 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useQuery } from "@apollo/client";
 import { GET_STATISTICS } from "../graphql/queries/transaction.query";
+import { useEffect, useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Chart = () => {
-  const { data } = useQuery(GET_STATISTICS);
-  console.log(data);
-  let datas = [
-    {
-      label: "Label 1",
-      value: 55,
-      color: "rgba(0, 43, 73, 1)",
-      cutout: 130,
-      spacing: 10,
-      borderWidth: 1,
-      borderRadius: 30,
-    },
-    {
-      label: "Label 2",
-      value: 15,
-      color: "rgba(0, 103, 160, 1)",
-      cutout: 130,
-      spacing: 10,
-      borderWidth: 1,
-      borderRadius: 30,
-    },
-    {
-      label: "Label 3",
-      value: 80,
-      color: "rgba(83, 217, 217, 1)",
-      cutout: 130,
-      spacing: 10,
-      borderWidth: 1,
-      borderRadius: 30,
-    },
-  ];
+  const { data } = useQuery(GET_STATISTICS, {
+    fetchPolicy: "network-only",
+  });
 
   const chartColors = {
-    expense: "rgba(0, 43, 73, 1)",
-    income: "rgba(0, 103, 160, 1)",
-    saving: "rgba(83, 217, 217, 1)",
+    expense: "rgb(201, 50, 50, 1)",
+    income: "rgb(35, 153, 79, 1)",
+    saving: "rgb(47, 101, 225, 1)",
   };
 
-  const finalData = {
-    labels: data.getStatistics.map((item) => item.category),
+  const [chartData, setChartData] = useState({
+    labels: [],
     datasets: [
       {
         label: "$",
-        data: data.getStatistics.map((item) => item.total),
-        backgroundColor: data.getStatistics.map(
-          (item) => chartColors[item.category]
-        ),
-        borderColor: data.getStatistics.map(
-          (item) => chartColors[item.category]
-        ),
+        data: [],
+        backgroundColor: [],
+        borderColor: [],
+        borderWidth: 1,
+        borderRadius: 30,
+        spacing: 10,
+        cutout: 90,
       },
     ],
-  };
+  });
+
+  useEffect(() => {
+    if (data) {
+      const categories = data.getStatistics.map((item) => item.category);
+      const backgroundColors = [];
+
+      categories.forEach((category) => {
+        backgroundColors.push(chartColors[category]);
+      });
+
+      setChartData((prevState) => ({
+        labels: data.getStatistics.map((item) => item.category),
+        datasets: [
+          {
+            ...prevState.datasets[0],
+            data: data.getStatistics.map((item) => item.total),
+            backgroundColor: backgroundColors,
+          },
+        ],
+      }));
+    }
+  }, [data]);
 
   return (
     <div className="flex items-center">
-      <Doughnut data={finalData} />
+      <Doughnut data={chartData} />
     </div>
   );
 };

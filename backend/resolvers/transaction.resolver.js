@@ -50,7 +50,7 @@ const transactionResolver = {
           }
           return acc;
         }, {});
-        console.log(statistics);
+        console.log("name", statistics);
         return Object.keys(statistics).map((key) => ({
           category: key,
           total: statistics[key],
