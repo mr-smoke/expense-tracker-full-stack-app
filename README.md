@@ -18,7 +18,7 @@
 
 A full-stack expense tracker application built with React, Node.js, Express.js, MongoDB, GraphQL, Passport, and Tailwind CSS. This project provides a platform for users to track their expenses, categorize them, and visualize their spending habits. It includes user authentication and authorization using Passport, allowing users to manage their own expenses while ensuring data privacy. The application leverages the power of React for building a dynamic and responsive user interface, MongoDB for a flexible and scalable database solution, Express.js for handling server-side logic and API endpoints, GraphQL for efficient data querying, and Tailwind CSS for styling and responsive design.
 
-<a href="https://i.ibb.co/GtLtQkt/expensetracker.gif" target="_blank"><img src="https://i.ibb.co/GtLtQkt/expensetracker.gif" alt="blog-app" border="0" /></a>
+<a href="https://i.ibb.co/GtLtQkt/expensetracker.gif" target="_blank"><img src="https://i.ibb.co/8dpdg2d/expensetracker.gif" alt="blog-app" border="0" /></a>
 
 ### Key Use Cases:
 
