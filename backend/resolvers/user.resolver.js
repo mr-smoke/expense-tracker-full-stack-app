@@ -34,6 +34,11 @@ const userResolver = {
         if (!username || !name || !password || !gender) {
           throw new Error("All fields are required");
         }
+
+        if (password.length < 6) {
+          throw new Error("Password must be at least 6 characters long");
+        }
+
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
