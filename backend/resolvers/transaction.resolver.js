@@ -1,4 +1,3 @@
-import { get } from "mongoose";
 import Transaction from "../models/transaction.model.js";
 import User from "../models/user.model.js";
 
@@ -67,7 +66,7 @@ const transactionResolver = {
         if (!context.getUser()) {
           throw new Error("Unauthorized");
         }
-        if (input.amount < 0) {
+        if (input.amount < 0 || input.amount > 1000000) {
           throw new Error("Invalid amount");
         }
         if (!input.description || !input.date || !input.amount) {
@@ -87,7 +86,7 @@ const transactionResolver = {
         if (!context.getUser()) {
           throw new Error("Unauthorized");
         }
-        if (input.amount < 0) {
+        if (input.amount < 0 || input.amount > 1000000) {
           throw new Error("Invalid amount");
         }
         const userId = await context.getUser().id;

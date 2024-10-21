@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Chart = () => {
-  const { data } = useQuery(GET_STATISTICS);
+  const { data, loading, error } = useQuery(GET_STATISTICS);
 
   const chartColors = {
     expense: "rgb(201, 50, 50, 1)",
@@ -53,9 +53,16 @@ const Chart = () => {
     }
   }, [data]);
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
     <div className="flex items-center">
-      <Doughnut data={chartData} />
+      {data && data.getStatistics && data.getStatistics.length > 0 ? (
+        <Doughnut data={chartData} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

@@ -48,6 +48,7 @@ const Register = () => {
               type="text"
               id="name"
               name="name"
+              maxLength="45"
               onChange={handleChange}
             />
           </div>
@@ -58,6 +59,7 @@ const Register = () => {
               type="text"
               id="username"
               name="username"
+              maxLength="20"
               onChange={handleChange}
             />
           </div>

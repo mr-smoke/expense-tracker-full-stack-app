@@ -10,7 +10,7 @@ const Login = () => {
   });
 
   const [login, { loading, error }] = useMutation(LOGIN, {
-    refetchQueries: ["GetAuthUser", "GetTransactions"],
+    refetchQueries: ["GetAuthUser", "GetTransactions", "GetStatistics"],
   });
 
   const handleChange = (e) => {
@@ -46,6 +46,7 @@ const Login = () => {
               type="text"
               id="username"
               name="username"
+              maxLength="20"
               onChange={handleChange}
             />
           </div>

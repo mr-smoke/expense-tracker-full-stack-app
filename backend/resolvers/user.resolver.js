@@ -42,11 +42,19 @@ const userResolver = {
           throw new Error("Username already exists");
         }
 
+        const profilePicMan =
+          "https://avatar.iran.liara.run/public/boy?username=" + username;
+        const profilePicWoman =
+          "https://avatar.iran.liara.run/public/girl?username=" + username;
+
+        const profilePic = gender === "male" ? profilePicMan : profilePicWoman;
+
         const user = new User({
           username,
           name,
           password: hashedPassword,
           gender,
+          profilePic,
         });
 
         await user.save();

@@ -77,6 +77,7 @@ const Transaction = () => {
             type="text"
             id="description"
             name="description"
+            maxLength="50"
             onChange={handleChange}
             placeholder={form.description}
           />
@@ -126,6 +127,8 @@ const Transaction = () => {
               type="number"
               id="amount"
               name="amount"
+              min={1}
+              max={1000000}
               onChange={handleChange}
               placeholder={form.amount}
             />
@@ -139,6 +142,7 @@ const Transaction = () => {
               type="text"
               id="location"
               name="location"
+              maxLength="50"
               onChange={handleChange}
               placeholder={form.location}
             />
