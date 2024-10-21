@@ -73,7 +73,7 @@ To set up the project locally, follow these steps:
    cd expense-tracker-full-stack-app/frontend
    ```
 
-7. Install the [dependecies](#dependencies) for the frontend side:
+7. Install the [dependencies](#dependencies) for the frontend side:
 
    ```bash
    npm install
