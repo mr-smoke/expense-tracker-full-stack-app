@@ -25,7 +25,7 @@ import {
 const client = new ApolloClient({
   // link: concat(authLink, httpLink),
   uri:
-    import.meta.VITE_NODE_ENV === "development"
+    import.meta.env.VITE_NODE_ENV === "development"
       ? "http://localhost:4000/graphql"
       : "/graphql",
   cache: new InMemoryCache(),
